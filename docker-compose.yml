@@ -1,11 +1,11 @@
 version: "3.4"
 services:
   alephium:
-    image: "alephium.alephium.dnp.dappnode.eth:0.1.1"
+    image: "alephium.alephium.dnp.dappnode.eth:0.1.3"
     build:
       context: alephium
       args:
-        UPSTREAM_VERSION: v1.4.2
+        UPSTREAM_VERSION: v1.4.4
     restart: unless-stopped
     ports:
       - "9973:9973/tcp"
@@ -17,24 +17,77 @@ services:
       - "alephium-wallets:/alephium-home/.alephium-wallets"
     environment:
       EXTRA_OPTS: ""
-  grafana:
-    image: "grafana.alephium.dnp.dappnode.eth:0.1.1"
-    build:
-      context: grafana
-    volumes:
-      - "grafana_data:/var/lib/grafana"
-    env_file:
-      - ./grafana/config.monitoring
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - "http://127.0.0.1:12973/infos/self-clique"
+      timeout: 45s
+  postgres:
+    image: "postgres:14.1-bullseye"
+    environment:
+      - POSTGRES_USER=alephium
+      - POSTGRES_PASSWORD=alephium
+      - POSTGRES_DB=alephium-explorer
     restart: unless-stopped
-  prometheus:
-    image: "prometheus.alephium.dnp.dappnode.eth:0.1.1"
-    build:
-      context: prometheus
+    healthcheck:
+      test:
+        - CMD
+        - pg_isready
+        - "-q"
+        - "-d"
+        - alephium-explorer
+        - "-U"
+        - alephium
+      timeout: 45s
+      interval: 10s
     volumes:
-      - "prometheus_data:/prometheus"
+      - "postgres_data:/var/lib/postgresql/data"
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_CONFIG_SERVER_MODE=False
     restart: unless-stopped
+  explorer-backend:
+    image: "alephium/explorer-backend:latest"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      alephium:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - "no-new-privileges:true"
+    environment:
+      - EXPLORER_HOST=0.0.0.0
+      - EXPLORER_PORT=9090
+      - BLOCKFLOW_HOST=alephium.alephium.dappnode
+      - BLOCKFLOW_PORT=12973
+      - DB_NAME=alephium-explorer
+      - DB_HOST=postgres.alephium.dappnode
+      - DB_PORT=5432
+      - DB_USER=alephium
+      - DB_PASSWORD=alephium
+      - EXPLORER_READONLY=false
+  explorer-frontend:
+    image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.3"
+    build:
+      context: explorer-frontend
+      args:
+        - "REACT_APP_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090"
+        - REACT_APP_NETWORK_TYPE=mainnet
+    depends_on:
+      - explorer-backend
+    restart: unless-stopped
+    security_opt:
+      - "no-new-privileges:true"
 volumes:
   alephium-data: {}
   alephium-wallets: {}
   prometheus_data: {}
   grafana_data: {}
+  postgres_data: {}

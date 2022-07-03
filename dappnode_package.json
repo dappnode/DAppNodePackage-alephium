@@ -1,7 +1,7 @@
 {
     "name": "alephium.dnp.dappnode.eth",
-    "version": "0.1.1",
-    "upstreamVersion": "v1.4.2",
+    "version": "0.1.3",
+    "upstreamVersion": "v1.4.4",
     "upstreamRepo": "alephium/alephium",
     "upstreamArg": "UPSTREAM_VERSION",
     "shortDescription": "A new paradigm",
@@ -17,11 +17,9 @@
     "links": {
       "homepage": "https://github.com/alephium/alephium",
       "api": "http://alephium.alephium.dappnode:12973",
-      "OpenAPI": "http://alephium.alephium.dappnode:12973/docs",
-      "Monitoring": "http://grafana.alephium.dappnode:3000",
-      "Explorer": "https://explorer.alephium.org",
-      "WebSocket": "ws://alephium.alephium.dappnode:11973",
-      "Miner API": "http://alephium.alephium.dappnode:10973"
+      "OpenAPI Node": "http://alephium.alephium.dappnode:12973/docs",
+      "OpenAPI Explorer": "http://explorer-backend.alephium.dappnode:9090/docs",
+      "Block explorer": "http://explorer-frontend.alephium.dappnode:3000"
     },
     "repository": {
       "type": "git",

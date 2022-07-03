@@ -1,0 +1,10 @@
+[
+    {
+      "labels": {
+        "package": "alephium.dnp.dappnode.eth",
+        "service": "alephium.alephium.dappnode",
+        "app": "alephium"
+      },
+      "targets": ["alephium.alephium.dappnode:12973"]
+    }
+  ]
