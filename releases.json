@@ -1,0 +1,15 @@
+{
+  "0.1.0": {
+    "hash": "/ipfs/QmZ6xviLcscjoUbtKvJyYSDZBLV1fULH6cXdnvVkTSh1wA",
+    "uploadedTo": {
+      "dappnode": "Sat, 11 Jun 2022 10:17:23 GMT",
+      "remote": "Sat, 11 Jun 2022 10:28:35 GMT"
+    }
+  },
+  "0.1.1": {
+    "hash": "/ipfs/QmVhsbPjpe7S2xuQFkoVyPn9J4BeGbV5Ww5eMHqq8RmJNZ",
+    "uploadedTo": {
+      "dappnode": "Thu, 23 Jun 2022 17:16:26 GMT"
+    }
+  }
+}

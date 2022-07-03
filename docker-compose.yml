@@ -1,0 +1,40 @@
+version: "3.4"
+services:
+  alephium:
+    image: "alephium.alephium.dnp.dappnode.eth:0.1.1"
+    build:
+      context: alephium
+      args:
+        UPSTREAM_VERSION: v1.4.2
+    restart: unless-stopped
+    ports:
+      - "9973:9973/tcp"
+      - "9973:9973/udp"
+    security_opt:
+      - "no-new-privileges:true"
+    volumes:
+      - "alephium-data:/alephium-home/.alephium"
+      - "alephium-wallets:/alephium-home/.alephium-wallets"
+    environment:
+      EXTRA_OPTS: ""
+  grafana:
+    image: "grafana.alephium.dnp.dappnode.eth:0.1.1"
+    build:
+      context: grafana
+    volumes:
+      - "grafana_data:/var/lib/grafana"
+    env_file:
+      - ./grafana/config.monitoring
+    restart: unless-stopped
+  prometheus:
+    image: "prometheus.alephium.dnp.dappnode.eth:0.1.1"
+    build:
+      context: prometheus
+    volumes:
+      - "prometheus_data:/prometheus"
+    restart: unless-stopped
+volumes:
+  alephium-data: {}
+  alephium-wallets: {}
+  prometheus_data: {}
+  grafana_data: {}
