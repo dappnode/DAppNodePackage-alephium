@@ -12,7 +12,7 @@ In order to connect your Desktop Wallet with your own node, go to "Settings > Ne
 
 Then "Save".
 
-⚠️ **Important**: You will have to wait for your node to synchronize to connect the wallet UI to your node.
+⚠️ **Important**: You will have to wait for your node to synchronize to connect the Desktop Wallet to your node.
 
 **Monitoring:**
 It includes a Grafana dashboard for the [DMS](http://my.dappnode/#/installer/dms.dnp.dappnode.eth)
