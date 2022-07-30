@@ -1,5 +1,10 @@
 name: "Main"
 on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Bump type, it must be: patch | minor | major"
+        required: true
   pull_request:
   push:
     branches:
