@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       bump:
-        description: "Bump type, it must be: patch | minor | major"
+        description: "Bump type, must be: patch"
         required: true
   pull_request:
   push:
@@ -26,7 +26,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v2
       - name: Publish
