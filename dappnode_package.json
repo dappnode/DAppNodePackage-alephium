@@ -1,32 +1,32 @@
 {
-    "name": "alephium.dnp.dappnode.eth",
-    "version": "0.1.3",
-    "upstreamVersion": "v1.4.4",
-    "upstreamRepo": "alephium/alephium",
-    "upstreamArg": "UPSTREAM_VERSION",
-    "shortDescription": "A new paradigm",
-    "description": "Alephium is the first live layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.",
-    "type": "service",
-    "mainService": "alephium",
-    "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
-    "contributors": [
-      "mgarciate <mgarciate@gmail.com> (https://github.com/mgarciate)"
-    ],
-    "categories": ["Blockchain"],
-    "architectures": ["linux/amd64"],
-    "links": {
-      "homepage": "https://github.com/alephium/alephium",
-      "api": "http://alephium.alephium.dappnode:12973",
-      "OpenAPI Node": "http://alephium.alephium.dappnode:12973/docs",
-      "OpenAPI Explorer": "http://explorer-backend.alephium.dappnode:9090/docs",
-      "Block explorer": "http://explorer-frontend.alephium.dappnode:3000"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/dappnode/DAppNodePackage-alephium.git"
-    },
-    "bugs": {
-      "url": "https://github.com/dappnode/DAppNodePackage-alephium/issues"
-    },
-    "license": "GPL-3.0"
-  }
+  "name": "alephium.dnp.dappnode.eth",
+  "version": "0.1.3",
+  "upstreamVersion": "v1.5.0-rc5",
+  "upstreamRepo": "alephium/alephium",
+  "upstreamArg": "UPSTREAM_VERSION",
+  "shortDescription": "A new paradigm",
+  "description": "Alephium is the first live layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.",
+  "type": "service",
+  "mainService": "alephium",
+  "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
+  "contributors": [
+    "mgarciate <mgarciate@gmail.com> (https://github.com/mgarciate)"
+  ],
+  "categories": ["Blockchain"],
+  "architectures": ["linux/amd64"],
+  "links": {
+    "homepage": "https://github.com/alephium/alephium",
+    "api": "http://alephium.alephium.dappnode:12973",
+    "OpenAPI Node": "http://alephium.alephium.dappnode:12973/docs",
+    "OpenAPI Explorer": "http://explorer-backend.alephium.dappnode:9090/docs",
+    "Block explorer": "http://explorer-frontend.alephium.dappnode:3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dappnode/DAppNodePackage-alephium.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dappnode/DAppNodePackage-alephium/issues"
+  },
+  "license": "GPL-3.0"
+}
