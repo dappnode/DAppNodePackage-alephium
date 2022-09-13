@@ -53,7 +53,7 @@ services:
       - PGADMIN_CONFIG_SERVER_MODE=False
     restart: unless-stopped
   explorer-backend:
-    image: "alephium/explorer-backend:latest"
+    image: "alephium/explorer-backend:v1.8.0"
     depends_on:
       postgres:
         condition: service_healthy

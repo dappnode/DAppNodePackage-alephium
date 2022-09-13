@@ -12,8 +12,12 @@
   "contributors": [
     "mgarciate <mgarciate@gmail.com> (https://github.com/mgarciate)"
   ],
-  "categories": ["Blockchain"],
-  "architectures": ["linux/amd64"],
+  "categories": [
+    "Blockchain"
+  ],
+  "architectures": [
+    "linux/amd64"
+  ],
   "links": {
     "homepage": "https://github.com/alephium/alephium",
     "api": "http://alephium.alephium.dappnode:12973",
