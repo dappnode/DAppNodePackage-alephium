@@ -1,0 +1,14 @@
+version: "2"
+fields:
+  - id: explorerEnabled
+    target:
+      type: environment
+      name: EXPLORER_ENABLED
+      service: [postgres, pgadmin, explorer-backend, explorer-frontend]
+    title: Explorer enabled
+    description: >-
+      The explorer service is disabled by default. Do you want to run your own explorer locally?
+    enum:
+      - "true"
+      - "false"
+    required: true

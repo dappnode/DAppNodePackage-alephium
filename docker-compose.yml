@@ -24,11 +24,12 @@ services:
         - "http://127.0.0.1:12973/infos/self-clique"
       timeout: 45s
   postgres:
-    image: "postgres:14.1-bullseye"
+    image: "postgres.alephium.dnp.dappnode.eth:0.1.3"
+    build:
+      context: postgres
+    user: postgres
     environment:
-      - POSTGRES_USER=alephium
-      - POSTGRES_PASSWORD=alephium
-      - POSTGRES_DB=alephium-explorer
+      - EXPLORER_ENABLED=false
     restart: unless-stopped
     healthcheck:
       test:
