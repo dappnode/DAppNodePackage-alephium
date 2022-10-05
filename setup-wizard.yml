@@ -1,0 +1,14 @@
+version: "2"
+fields:
+  - id: explorerEnabled
+    target:
+      type: environment
+      name: EXPLORER_ENABLED
+      service: [postgres, explorer-backend, explorer-frontend]
+    title: Local chain explorer
+    description: >-
+      The explorer service is disabled by default. Do you want to run your own chain explorer locally? Enabling the explorer will allow you to be self-sovereign in your access to chain data, but consumes significantly more storage
+    enum:
+      - "disabled"
+      - "enabled"
+    required: true

@@ -6,9 +6,9 @@ In order to connect your Desktop Wallet with your own node, go to "Settings > Ne
 
  - **Node host**: [alephium.alephium.dappnode:12973](http://alephium.alephium.dappnode:12973)
 
- - **Explorer API host**: [explorer-backend.alephium.dappnode:9090](http://explorer-backend.alephium.dappnode:9090)
+ - **Explorer API host**: [explorer-backend.alephium.dappnode:9090](http://explorer-backend.alephium.dappnode:9090) (Turn it on in Config)
 
- - **Explorer URL**: [explorer-frontend.alephium.dappnode:3000](http://explorer-frontend.alephium.dappnode:3000)
+ - **Explorer URL**: [explorer-frontend.alephium.dappnode:3000](http://explorer-frontend.alephium.dappnode:3000) (Turn it on in Config)
 
 Then "Save".
 
