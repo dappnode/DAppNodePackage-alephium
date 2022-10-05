@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   alephium:
-    image: "alephium.alephium.dnp.dappnode.eth:0.1.3"
+    image: "alephium.alephium.dnp.dappnode.eth:0.1.4"
     build:
       context: alephium
       args:
@@ -17,48 +17,20 @@ services:
       - "alephium-wallets:/alephium-home/.alephium-wallets"
     environment:
       EXTRA_OPTS: ""
-    healthcheck:
-      test:
-        - CMD
-        - curl
-        - "http://127.0.0.1:12973/infos/self-clique"
-      timeout: 45s
   postgres:
-    image: "postgres:14.1-bullseye"
+    image: "postgres.alephium.dnp.dappnode.eth:0.1.4"
+    build:
+      context: postgres
+    user: postgres
     environment:
-      - POSTGRES_USER=alephium
-      - POSTGRES_PASSWORD=alephium
-      - POSTGRES_DB=alephium-explorer
+      - EXPLORER_ENABLED=disabled
     restart: unless-stopped
-    healthcheck:
-      test:
-        - CMD
-        - pg_isready
-        - "-q"
-        - "-d"
-        - alephium-explorer
-        - "-U"
-        - alephium
-      timeout: 45s
-      interval: 10s
     volumes:
-      - "postgres_data:/var/lib/postgresql/data"
-  pgadmin:
-    image: dpage/pgadmin4
-    depends_on:
-      - postgres
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
-      - PGADMIN_DEFAULT_PASSWORD=admin
-      - PGADMIN_CONFIG_SERVER_MODE=False
-    restart: unless-stopped
+      - "postgres_data:/var/lib/postgresql/14/main"
   explorer-backend:
-    image: "alephium/explorer-backend:v1.8.0"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      alephium:
-        condition: service_healthy
+    image: "explorer-backend.alephium.dnp.dappnode.eth:0.1.4"
+    build:
+      context: explorer-backend
     restart: unless-stopped
     security_opt:
       - "no-new-privileges:true"
@@ -73,18 +45,19 @@ services:
       - DB_USER=alephium
       - DB_PASSWORD=alephium
       - EXPLORER_READONLY=false
+      - EXPLORER_ENABLED=disabled
   explorer-frontend:
-    image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.3"
+    image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.4"
     build:
       context: explorer-frontend
       args:
         - "REACT_APP_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090"
         - REACT_APP_NETWORK_TYPE=mainnet
-    depends_on:
-      - explorer-backend
     restart: unless-stopped
     security_opt:
       - "no-new-privileges:true"
+    environment:
+      - EXPLORER_ENABLED=disabled
 volumes:
   alephium-data: {}
   alephium-wallets: {}
