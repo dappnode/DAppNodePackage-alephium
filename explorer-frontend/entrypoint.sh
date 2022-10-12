@@ -8,4 +8,4 @@ else
     exit 1
 fi
 
-exec node /usr/local/bin/serve -s build -p 3000
+exec /app/entrypoint.sh

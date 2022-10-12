@@ -50,14 +50,13 @@ services:
     image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.4"
     build:
       context: explorer-frontend
-      args:
-        - "REACT_APP_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090"
-        - REACT_APP_NETWORK_TYPE=mainnet
     restart: unless-stopped
     security_opt:
       - "no-new-privileges:true"
     environment:
       - EXPLORER_ENABLED=disabled
+      - REACT_APP_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090
+      - REACT_APP_NETWORK_TYPE=mainnet
 volumes:
   alephium-data: {}
   alephium-wallets: {}
