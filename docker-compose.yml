@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   alephium:
-    image: "alephium.alephium.dnp.dappnode.eth:0.1.4"
+    image: "alephium.alephium.dnp.dappnode.eth:0.1.0"
     build:
       context: alephium
       args:
@@ -18,7 +18,7 @@ services:
     environment:
       EXTRA_OPTS: ""
   postgres:
-    image: "postgres.alephium.dnp.dappnode.eth:0.1.4"
+    image: "postgres.alephium.dnp.dappnode.eth:0.1.0"
     build:
       context: postgres
     user: postgres
@@ -28,7 +28,7 @@ services:
     volumes:
       - "postgres_data:/var/lib/postgresql/14/main"
   explorer-backend:
-    image: "explorer-backend.alephium.dnp.dappnode.eth:0.1.4"
+    image: "explorer-backend.alephium.dnp.dappnode.eth:0.1.0"
     build:
       context: explorer-backend
     restart: unless-stopped
