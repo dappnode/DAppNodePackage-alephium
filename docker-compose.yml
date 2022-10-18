@@ -47,7 +47,7 @@ services:
       - EXPLORER_READONLY=false
       - EXPLORER_ENABLED=disabled
   explorer-frontend:
-    image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.4"
+    image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.0"
     build:
       context: explorer-frontend
     restart: unless-stopped
