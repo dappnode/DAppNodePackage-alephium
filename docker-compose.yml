@@ -16,6 +16,7 @@ services:
       - "alephium-data:/alephium-home/.alephium"
       - "alephium-wallets:/alephium-home/.alephium-wallets"
     environment:
+      ALEPHIUM_FORCE_RELOAD_SNAPSHOT: 0
       EXTRA_OPTS: ""
   postgres:
     image: "postgres.alephium.dnp.dappnode.eth:0.1.0"
