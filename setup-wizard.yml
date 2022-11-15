@@ -12,3 +12,15 @@ fields:
       - "disabled"
       - "enabled"
     required: true
+  - id: initializingFromSnapshot
+    target:
+      type: environment
+      name: INITIALIZING_FROM_SNAPSHOT
+      service: [alephium]
+    title: Initializing from snapshot
+    description: >-
+      Load the latest snapshot from https://archives.alephium.org to speed up the initial sync, if not already synced
+    enum:
+      - "disabled"
+      - "enabled"
+    required: true
