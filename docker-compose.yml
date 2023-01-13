@@ -5,7 +5,7 @@ services:
     build:
       context: alephium
       args:
-        UPSTREAM_VERSION: v1.5.6
+        UPSTREAM_VERSION: v1.6.0-rc6
     restart: unless-stopped
     ports:
       - "9973:9973/tcp"
