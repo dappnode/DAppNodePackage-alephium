@@ -22,5 +22,6 @@ It includes a Grafana dashboard for the [DMS](http://my.dappnode/#/installer/dms
  - **Miner API**: http://alephium.alephium.dappnode:10973
 
 🛠️**Troubleshooting**🛠️
-If your Destkop Wallet can't access your node, make sure your router has the following ports open:
+ - If your Destkop Wallet can't access your node, make sure your router has the following ports open:
 **Ports**: Expose 9973 (TCP and UDP)
+ - Most of the versions could migrate smoothly, but sometimes it's necessary to introduce breaking changes in the explorer-backend. To resync, remove the **Postgres Data** volume (only Postgres Data) in the section below ⬇️
