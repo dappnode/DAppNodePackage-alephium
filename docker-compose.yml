@@ -57,8 +57,8 @@ services:
       - "no-new-privileges:true"
     environment:
       - EXPLORER_ENABLED=disabled
-      - "REACT_APP_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090"
-      - REACT_APP_NETWORK_TYPE=mainnet
+      - "VITE_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090"
+      - VITE_NETWORK_TYPE=mainnet
 volumes:
   alephium-data: {}
   alephium-wallets: {}
