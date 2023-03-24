@@ -6,7 +6,8 @@ FROM golang:1.19-buster as builder
 
 RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go install github.com/touilleio/tee-hash@latest
 
-FROM alephium/alephium:${UPSTREAM_VERSION}
+# Remove the -adoptjdk suffix when docker updates to 20.10.21 or higher
+FROM alephium/alephium:${UPSTREAM_VERSION}-adoptjdk
 
 COPY --from=builder /go/bin/tee-hash /usr/local/bin/tee-hash
 
