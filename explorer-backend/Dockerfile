@@ -1,4 +1,4 @@
-FROM alephium/explorer-backend:v1.15.1
+FROM alephium/explorer-backend:v1.16.1
 
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 
