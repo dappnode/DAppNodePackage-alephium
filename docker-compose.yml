@@ -19,6 +19,12 @@ services:
       - ALEPHIUM_FORCE_RELOAD_SNAPSHOT=0
       - INITIALIZING_FROM_SNAPSHOT=disabled
       - EXTRA_OPTS=
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - "http://127.0.0.1:12973/infos/self-clique"
+      timeout: 45s
   postgres:
     image: "postgres.alephium.dnp.dappnode.eth:0.1.0"
     build:
@@ -33,6 +39,9 @@ services:
     image: "explorer-backend.alephium.dnp.dappnode.eth:0.1.0"
     build:
       context: explorer-backend
+    depends_on:
+      alephium:
+        condition: service_healthy
     restart: unless-stopped
     security_opt:
       - "seccomp:unconfined"
@@ -49,10 +58,20 @@ services:
       - DB_PASSWORD=alephium
       - EXPLORER_READONLY=false
       - EXPLORER_ENABLED=disabled
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - "http://127.0.0.1:$${EXPLORER_PORT:-9090}/infos"
+      timeout: 45s
+      interval: 30s
+      retries: 10
   explorer-frontend:
     image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.0"
     build:
       context: explorer-frontend
+    depends_on:
+      - explorer-backend
     restart: unless-stopped
     security_opt:
       - "no-new-privileges:true"
