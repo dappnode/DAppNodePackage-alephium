@@ -1,7 +1,7 @@
 {
   "name": "alephium.dnp.dappnode.eth",
-  "version": "0.1.25",
-  "upstreamVersion": "v2.11.0",
+  "version": "0.1.26",
+  "upstreamVersion": "v2.11.1",
   "upstreamRepo": "alephium/alephium",
   "upstreamArg": "UPSTREAM_VERSION",
   "shortDescription": "A new paradigm",
