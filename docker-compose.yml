@@ -1,20 +1,20 @@
 version: "3.4"
 services:
   alephium:
-    image: "alephium.alephium.dnp.dappnode.eth:0.1.0"
+    image: alephium.alephium.dnp.dappnode.eth:0.1.0
     build:
       context: alephium
       args:
-        UPSTREAM_VERSION: v2.11.1
+        UPSTREAM_VERSION: v2.12.0
     restart: unless-stopped
     ports:
-      - "9973:9973/tcp"
-      - "9973:9973/udp"
+      - 9973:9973/tcp
+      - 9973:9973/udp
     security_opt:
-      - "no-new-privileges:true"
+      - no-new-privileges:true
     volumes:
-      - "alephium-data:/alephium-home/.alephium"
-      - "alephium-wallets:/alephium-home/.alephium-wallets"
+      - alephium-data:/alephium-home/.alephium
+      - alephium-wallets:/alephium-home/.alephium-wallets
     environment:
       - ALEPHIUM_FORCE_RELOAD_SNAPSHOT=0
       - INITIALIZING_FROM_SNAPSHOT=disabled
@@ -23,10 +23,10 @@ services:
       test:
         - CMD
         - curl
-        - "http://127.0.0.1:12973/infos/self-clique"
+        - http://127.0.0.1:12973/infos/self-clique
       timeout: 45s
   postgres:
-    image: "postgres.alephium.dnp.dappnode.eth:0.1.0"
+    image: postgres.alephium.dnp.dappnode.eth:0.1.0
     build:
       context: postgres
     user: postgres
@@ -34,9 +34,9 @@ services:
       - EXPLORER_ENABLED=disabled
     restart: unless-stopped
     volumes:
-      - "postgres_data:/var/lib/postgresql/14/main"
+      - postgres_data:/var/lib/postgresql/14/main
   explorer-backend:
-    image: "explorer-backend.alephium.dnp.dappnode.eth:0.1.0"
+    image: explorer-backend.alephium.dnp.dappnode.eth:0.1.0
     build:
       context: explorer-backend
     depends_on:
@@ -44,8 +44,8 @@ services:
         condition: service_healthy
     restart: unless-stopped
     security_opt:
-      - "seccomp:unconfined"
-      - "no-new-privileges:true"
+      - seccomp:unconfined
+      - no-new-privileges:true
     environment:
       - EXPLORER_HOST=0.0.0.0
       - EXPLORER_PORT=9090
@@ -62,22 +62,22 @@ services:
       test:
         - CMD
         - curl
-        - "http://127.0.0.1:$${EXPLORER_PORT:-9090}/infos"
+        - http://127.0.0.1:$${EXPLORER_PORT:-9090}/infos
       timeout: 45s
       interval: 30s
       retries: 10
   explorer-frontend:
-    image: "explorer-frontend.alephium.dnp.dappnode.eth:0.1.0"
+    image: explorer-frontend.alephium.dnp.dappnode.eth:0.1.0
     build:
       context: explorer-frontend
     depends_on:
       - explorer-backend
     restart: unless-stopped
     security_opt:
-      - "no-new-privileges:true"
+      - no-new-privileges:true
     environment:
       - EXPLORER_ENABLED=disabled
-      - "VITE_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090"
+      - VITE_BACKEND_URL=http://explorer-backend.alephium.dappnode:9090
       - VITE_NETWORK_TYPE=mainnet
 volumes:
   alephium-data: {}
