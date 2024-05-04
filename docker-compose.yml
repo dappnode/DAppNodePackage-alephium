@@ -17,6 +17,7 @@ services:
       - alephium-wallets:/alephium-home/.alephium-wallets
     environment:
       - ALEPHIUM_FORCE_RELOAD_SNAPSHOT=0
+      - NODE_TYPE=pruned
       - INITIALIZING_FROM_SNAPSHOT=disabled
       - EXTRA_OPTS=
     healthcheck:
