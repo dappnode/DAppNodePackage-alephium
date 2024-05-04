@@ -3,6 +3,8 @@
 ALEPHIUM_HOME=${ALEPHIUM_HOME:-/alephium-home/.alephium}
 ALEPHIUM_NETWORK=${ALEPHIUM_NETWORK:-mainnet}
 ALEPHIUM_FORCE_RELOAD_SNAPSHOT=${ALEPHIUM_FORCE_RELOAD_SNAPSHOT:-0}
+# Node type: full or pruned. Any other value might cause unexpected behaviour
+NODE_TYPE=${NODE_TYPE:-pruned}
 
 # If tee-hash (https://github.com/touilleio/tee-hash) is available, validates the checksum of the downloaded file.
 # Do not validate the checksum otherwise
@@ -15,7 +17,7 @@ then
   VALIDATE_CHECKSUM=1
 fi
 
-# Checking for ALEPHIUM_HOME folder is writable
+# Check if ALEPHIUM_HOME folder is writable
 if [ ! -w "$ALEPHIUM_HOME" ]
 then
     echo "Error: Data folder $ALEPHIUM_HOME is not writable by $(whoami). Please change ownership and/or permissions to $ALEPHIUM_HOME or its mount so $(whoami) can write on it, then relaunch"
@@ -41,10 +43,23 @@ fi
 # If the full node network data storage folder does not exist (i.e. first run of the full node), loading the snapshot
 if [ ! -d "$ALEPHIUM_HOME/$ALEPHIUM_NETWORK" ]
 then
+
+    # Check if enough disk space available
+    availableSpace=$(df -B1 "$ALEPHIUM_HOME" | tail -n 1 | awk '{print $4}' | head -n 1)
+    neededSpace=$(curl -s -I -L "$(curl -sL https://archives.alephium.org/archives/$ALEPHIUM_NETWORK/${NODE_TYPE}-node-data/_latest.txt)" | grep -i 'Content-Length:' | awk '{print $2}' | tr -d '\r')
+    neededSpaceWithMargin=$(echo "${neededSpace} * 1.2 / 1" | bc)
+    neededSpaceInGB=$(echo "${neededSpaceWithMargin} / 1000 / 1000 / 1000 / 1" | bc)
+    availableSpaceInGB=$(echo "${availableSpace} / 1000 / 1000 / 1000 / 1" | bc)
+    if [ "$neededSpaceWithMargin" -gt "$availableSpace" ]; then
+        echo "Error: Not enough available storage space in ${ALEPHIUM_HOME}. Only ${availableSpaceInGB} GB (${availableSpace} bytes) available but at least ${neededSpaceInGB} GB (${neededSpaceWithMargin} bytes) are needed."
+        echo "Please add more storage to ${ALEPHIUM_HOME}."
+        exit 1
+    fi
+
     echo "Loading $ALEPHIUM_NETWORK snapshot from official https://archives.alephium.org"
     # Creating a temp folder (on the same volume) where snapshot will be loaded
     mkdir "$ALEPHIUM_HOME/${ALEPHIUM_NETWORK}-snapshot"
-    curl -L "$(curl -s https://archives.alephium.org/archives/$ALEPHIUM_NETWORK/full-node-data/_latest.txt)" | $TEE_HASH_CMD | tar xf - -C "$ALEPHIUM_HOME/${ALEPHIUM_NETWORK}-snapshot"
+    curl -L "$(curl -sL https://archives.alephium.org/archives/$ALEPHIUM_NETWORK/${NODE_TYPE}-node-data/_latest.txt)" | $TEE_HASH_CMD | tar xf - -C "$ALEPHIUM_HOME/${ALEPHIUM_NETWORK}-snapshot"
     res=$?
     if [ "$res" != "0" ]; # If curl or tar command failed, stopping the load of the snapshot.
     then
@@ -54,11 +69,11 @@ then
     if [ "${VALIDATE_CHECKSUM}" = "1" ]
     then
       # Check sha256 of what has been downloaded
-      remote_sha256sum="$(curl -s https://archives.alephium.org/archives/$ALEPHIUM_NETWORK/full-node-data/_latest.txt.sha256sum)"
+      remote_sha256sum="$(curl -sL https://archives.alephium.org/archives/$ALEPHIUM_NETWORK/${NODE_TYPE}-node-data/_latest.txt.sha256sum)"
       local_sha256sum=$(cat "${CHECKSUM_FILE}")
       if [ "$remote_sha256sum" != "$local_sha256sum" ]
       then
-        echo "Error: Checksum is not good."
+        echo "Error: Checksum is not good. expected ${remote_sha256sum}, got ${local_sha256sum}"
         exit 1
       fi
     fi
