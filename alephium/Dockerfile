@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION
+ARG ALEPHIUM_VERSION
 ARG TARGETOS
 ARG TARGETARCH
 
@@ -7,7 +7,7 @@ FROM golang:1.19-buster as builder
 RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go install github.com/touilleio/tee-hash@latest
 
 # Remove the -adoptjdk suffix when docker updates to 20.10.21 or higher
-FROM alephium/alephium:${UPSTREAM_VERSION}-adoptjdk
+FROM alephium/alephium:${ALEPHIUM_VERSION}-adoptjdk
 
 USER root
 RUN apt update && apt-get install -y bc && apt-get clean

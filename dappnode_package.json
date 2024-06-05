@@ -1,9 +1,23 @@
 {
   "name": "alephium.dnp.dappnode.eth",
   "version": "0.1.34",
-  "upstreamVersion": "v3.0.2",
-  "upstreamRepo": "alephium/alephium",
-  "upstreamArg": "UPSTREAM_VERSION",
+  "upstream": [
+    {
+      "repo": "alephium/alephium",
+      "version": "v3.0.2",
+      "arg": "ALEPHIUM_VERSION"
+    },
+    {
+      "repo": "alephium/explorer-backend",
+      "version": "v1.19.3",
+      "arg": "ALEPHIUM_BACKEND_VERSION"
+    },
+    {
+      "repo": "mgarciate/alephium-frontend",
+      "version": "1.9.2",
+      "arg": "ALEPHIUM_EXPLORER_VERSION"
+    }
+  ],
   "shortDescription": "A new paradigm",
   "description": "Alephium is the first live layer 1 sharded blockchain scaling and improving on Bitcoin core technologies, Proof of Work and UTXO. It delivers a highly performant, secure DeFi & dApps platform with enhanced energy efficiency.",
   "type": "service",

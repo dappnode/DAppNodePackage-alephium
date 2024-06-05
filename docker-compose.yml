@@ -5,7 +5,7 @@ services:
     build:
       context: alephium
       args:
-        UPSTREAM_VERSION: v3.0.2
+        ALEPHIUM_VERSION: v3.0.2
     restart: unless-stopped
     ports:
       - 9973:9973/tcp
@@ -40,6 +40,8 @@ services:
     image: explorer-backend.alephium.dnp.dappnode.eth:0.1.0
     build:
       context: explorer-backend
+      args:
+        ALEPHIUM_BACKEND_VERSION: v1.19.3
     depends_on:
       alephium:
         condition: service_healthy
@@ -71,6 +73,8 @@ services:
     image: explorer-frontend.alephium.dnp.dappnode.eth:0.1.0
     build:
       context: explorer-frontend
+      args:
+        ALEPHIUM_EXPLORER_VERSION: 1.9.2
     depends_on:
       - explorer-backend
     restart: unless-stopped
