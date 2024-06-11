@@ -14,7 +14,7 @@
     },
     {
       "repo": "mgarciate/alephium-frontend",
-      "version": "1.9.3",
+      "version": "1.9.4",
       "arg": "ALEPHIUM_EXPLORER_VERSION"
     }
   ],

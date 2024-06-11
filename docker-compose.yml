@@ -74,7 +74,7 @@ services:
     build:
       context: explorer-frontend
       args:
-        ALEPHIUM_EXPLORER_VERSION: 1.9.3
+        ALEPHIUM_EXPLORER_VERSION: 1.9.4
     depends_on:
       - explorer-backend
     restart: unless-stopped
