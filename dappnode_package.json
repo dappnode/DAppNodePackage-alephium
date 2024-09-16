@@ -4,7 +4,7 @@
   "upstream": [
     {
       "repo": "alephium/alephium",
-      "version": "v3.6.3",
+      "version": "v3.6.4",
       "arg": "ALEPHIUM_VERSION"
     },
     {
@@ -14,7 +14,7 @@
     },
     {
       "repo": "mgarciate/alephium-frontend",
-      "version": "1.10.2",
+      "version": "1.10.3",
       "arg": "ALEPHIUM_EXPLORER_VERSION"
     }
   ],
