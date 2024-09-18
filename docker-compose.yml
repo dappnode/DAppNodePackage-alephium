@@ -5,7 +5,7 @@ services:
     build:
       context: alephium
       args:
-        ALEPHIUM_VERSION: v3.6.3
+        ALEPHIUM_VERSION: v3.6.4
     restart: unless-stopped
     ports:
       - 9973:9973/tcp
@@ -74,7 +74,7 @@ services:
     build:
       context: explorer-frontend
       args:
-        ALEPHIUM_EXPLORER_VERSION: 1.10.2
+        ALEPHIUM_EXPLORER_VERSION: 1.10.4
     depends_on:
       - explorer-backend
     restart: unless-stopped
