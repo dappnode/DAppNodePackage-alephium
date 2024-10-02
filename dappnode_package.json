@@ -1,10 +1,10 @@
 {
   "name": "alephium.dnp.dappnode.eth",
-  "version": "0.1.46",
+  "version": "0.1.47",
   "upstream": [
     {
       "repo": "alephium/alephium",
-      "version": "v3.6.6",
+      "version": "v3.8.0",
       "arg": "ALEPHIUM_VERSION"
     },
     {
