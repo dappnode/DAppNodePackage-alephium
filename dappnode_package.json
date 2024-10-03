@@ -9,7 +9,7 @@
     },
     {
       "repo": "alephium/explorer-backend",
-      "version": "v2.2.3",
+      "version": "v2.2.4",
       "arg": "ALEPHIUM_BACKEND_VERSION"
     },
     {
