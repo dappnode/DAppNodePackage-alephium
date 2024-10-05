@@ -4,12 +4,12 @@
   "upstream": [
     {
       "repo": "alephium/alephium",
-      "version": "v3.8.0",
+      "version": "v3.8.1",
       "arg": "ALEPHIUM_VERSION"
     },
     {
       "repo": "alephium/explorer-backend",
-      "version": "v2.2.3",
+      "version": "v2.2.4",
       "arg": "ALEPHIUM_BACKEND_VERSION"
     },
     {
