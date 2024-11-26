@@ -41,7 +41,7 @@ services:
     build:
       context: explorer-backend
       args:
-        ALEPHIUM_BACKEND_VERSION: v2.3.2
+        ALEPHIUM_BACKEND_VERSION: v2.3.3
     depends_on:
       alephium:
         condition: service_healthy
