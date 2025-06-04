@@ -9,12 +9,12 @@
     },
     {
       "repo": "alephium/explorer-backend",
-      "version": "v2.8.0",
+      "version": "v2.9.0",
       "arg": "ALEPHIUM_BACKEND_VERSION"
     },
     {
       "repo": "mgarciate/alephium-frontend",
-      "version": "1.10.12",
+      "version": "1.10.13",
       "arg": "ALEPHIUM_EXPLORER_VERSION"
     }
   ],
