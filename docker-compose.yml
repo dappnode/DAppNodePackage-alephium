@@ -5,7 +5,7 @@ services:
     build:
       context: alephium
       args:
-        ALEPHIUM_VERSION: v4.5.3
+        ALEPHIUM_VERSION: v4.5.4
     restart: unless-stopped
     ports:
       - 9973:9973/tcp
