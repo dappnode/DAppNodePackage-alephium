@@ -38,7 +38,7 @@
     {
       "arg": "ALEPHIUM_BACKEND_VERSION",
       "repo": "alephium/explorer-backend",
-      "version": "v3.3.7"
+      "version": "v3.5.0"
     },
     {
       "arg": "ALEPHIUM_EXPLORER_VERSION",
