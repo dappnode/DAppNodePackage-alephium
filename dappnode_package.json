@@ -33,7 +33,7 @@
     {
       "arg": "ALEPHIUM_VERSION",
       "repo": "alephium/alephium",
-      "version": "v4.7.0"
+      "version": "v4.7.1"
     },
     {
       "arg": "ALEPHIUM_BACKEND_VERSION",
@@ -46,5 +46,5 @@
       "version": "1.11.2"
     }
   ],
-  "version": "0.1.70"
+  "version": "0.1.71"
 }
