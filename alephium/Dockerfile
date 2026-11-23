@@ -11,7 +11,8 @@ FROM alephium/alephium:${ALEPHIUM_VERSION}-adoptjdk
 
 USER root
 RUN apt update && apt-get install -y bc && apt-get clean
-USER nobody
+# The container stays root: entrypoint.sh fixes the ownership of restored wallet files and then
+# runs the node as nobody, like the upstream image.
 
 COPY --from=builder /go/bin/tee-hash /usr/local/bin/tee-hash
 
