@@ -1,5 +1,15 @@
 #!/usr/bin/env sh
 
+# Started as root: give wallet files that a Dappmanager backup restore copied in as root back to
+# nobody, then re-run this script as nobody (home /alephium-home), the user the node always ran as.
+# The node rewrites a wallet file in place when deriving an address or changing the active one,
+# which fails on a root-owned file.
+if [ "$(id -u)" = "0" ]; then
+    find /alephium-home/.alephium-wallets ! -user nobody -exec chown nobody:nogroup {} +
+    export HOME=/alephium-home
+    exec setpriv --reuid=nobody --regid=nogroup --init-groups "$0" "$@"
+fi
+
 ALEPHIUM_HOME=${ALEPHIUM_HOME:-/alephium-home/.alephium}
 ALEPHIUM_NETWORK=${ALEPHIUM_NETWORK:-mainnet}
 

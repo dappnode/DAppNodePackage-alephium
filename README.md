@@ -24,3 +24,15 @@ The protocol's innovations extend battle-tested ideas from [Bitcoin](https://bit
 * PoLW algorithm reduces the energy consumption of PoW in the long term ([research paper](https://github.com/alephium/research/blob/master/polw.pdf))
   * Adaptive rewards based on hashrate and timestamp are designed and implemented
   * Internal mining cost through burning will be activated when hashrate and energy consumption is significantly high
+
+### Backup and restore
+
+The package's Backup tab and a Dappnode full backup save the node wallets (`/alephium-home/.alephium-wallets`) and the node's `user.conf`. Chain data and the explorer database are not included; they sync again after a restore. Each wallet file is encrypted with the password chosen when the wallet was created. The backup does not contain that password, so keep it, or the wallet's mnemonic.
+
+Restoring puts the wallet files back next to the wallets already on the node (a wallet with the same name is replaced) and restarts the package. When the package starts, it gives restored wallet files back to the user the node runs as, so the node can update them again (derive the next address, change the active address).
+
+The wallets are copied while the node runs. A wallet file changes only when the wallet is created or its addresses change, so do not do that while a backup runs. For an exact copy, stop the package first.
+
+#### Compatibility with Dappmanager versions without full backup
+
+Older Dappmanager versions only have the package's Backup tab. It can download a backup while the package runs or while it is stopped. Restoring needs the package running: the tab copies the files into the running package and then restarts it.
