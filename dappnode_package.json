@@ -3,6 +3,18 @@
     "linux/amd64"
   ],
   "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
+  "backup": [
+    {
+      "name": "wallets",
+      "path": "/alephium-home/.alephium-wallets",
+      "service": "alephium"
+    },
+    {
+      "name": "user-config",
+      "path": "/alephium-home/.alephium/user.conf",
+      "service": "alephium"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/dappnode/DAppNodePackage-alephium/issues"
   },
